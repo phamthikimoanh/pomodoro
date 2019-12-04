@@ -1,11 +1,7 @@
 import * as types from "../action/actionTypes";
-//import initStateTimer from "./timer";
-export const initStateSetting = {
-  breakLength: 5,
-  sessionLength: 25
-};
+import initState from "./initState";
 
-const settings = (state = initStateSetting, action) => {
+const settings = (state = initState, action) => {
   switch (action.type) {
     case types.UPDATE_SESSION_LENGTH:
       return {

@@ -5,11 +5,32 @@ const GroupBtn = props => {
   return (
     <div className="d-flex justify-content-center mt-5">
       {isTimerRunning ? (
-        <Button id="start_stop" value="Pause" nameButton="Start" styles="general" onClick={onStop}/>
+        <Button
+          id="stop"
+          name="stop"
+          value="Pause"
+          nameButton="Pause"
+          styles="general"
+          onClick={onStop}
+        />
       ) : (
-        <Button id="start_stop" value="Start" nameButton="Start" styles="general" onClick={onStart} />
+        <Button
+          id="start"
+          name="start"
+          value="Start"
+          nameButton="Start"
+          styles="general"
+          onClick={onStart}
+        />
       )}
-      <Button id="reset" value="Reset" nameButton="Reset" styles="general" onClick={onReset}/>
+      <Button
+        id="reset"
+        value="Reset"
+        name="reset"
+        nameButton="Reset"
+        styles="general"
+        onClick={onReset}
+      />
     </div>
   );
 };
