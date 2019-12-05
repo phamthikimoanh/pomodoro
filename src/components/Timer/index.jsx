@@ -19,7 +19,7 @@ class index extends Component {
       isAlarmON
     } = currentProps;
     console.log(clockTime, "thời gian bây giờ");
-
+    localStorage.setItem("clockTime", clockTime);
     // start timer
     if (currentProps.isTimerRunning && !prevProps.isTimerRunning) {
       this.timerID = setInterval(() => {

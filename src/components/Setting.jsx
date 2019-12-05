@@ -6,14 +6,14 @@ function hadleSessionLength(value, dispatchSessionUpdate) {
     dispatchSessionUpdate(value);
     localStorage.setItem("sessionLength", value);
   }
-  //console.log("value là SessionLength:", value);
+  console.log("value là SessionLength:", value);
 }
 function hadleBreakLength(value, dispatchBreakUpdate) {
   if ((value > 0 && value <= 15) || value === "") {
     dispatchBreakUpdate(value);
     localStorage.setItem("breakLength", value);
   }
-  //console.log("value là BreakLength:", value);
+  console.log("value là BreakLength:", value);
 }
 function Setting(props) {
   //const { sessionLength, breakLength, isAlarmON, isAutoStartON } = props;
@@ -43,7 +43,7 @@ function Setting(props) {
         <Couter
           value={breakLength}
           onChange={event =>
-            hadleSessionLength(event.target.value, updateBreakLength)
+            hadleBreakLength(event.target.value, updateBreakLength)
           }
           decrement={() => hadleBreakLength(breakLength - 1, updateBreakLength)}
           increment={() => hadleBreakLength(breakLength + 1, updateBreakLength)}
