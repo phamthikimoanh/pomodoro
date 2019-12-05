@@ -15,11 +15,11 @@ class index extends Component {
       secondsElapsed,
       clockTime,
       isBreakTime,
-      isAutoStartON,
       resetTimer,
-      autoStartTimer,
       isAlarmON
     } = currentProps;
+    console.log(clockTime, "thời gian bây giờ");
+
     // start timer
     if (currentProps.isTimerRunning && !prevProps.isTimerRunning) {
       this.timerID = setInterval(() => {
@@ -46,11 +46,6 @@ class index extends Component {
         this.alarmRef.current.play();
       }
       resetTimer();
-      if (isAutoStartON) {
-        autoStartTimer();
-      } else {
-        clearInterval(this.timerID);
-      }
     }
   }
 
@@ -66,6 +61,7 @@ class index extends Component {
       isBreakTime
     } = this.props;
     const { startTimer, stopTimer, resetTimer } = this.props;
+
     return (
       <React.Fragment>
         <Timer

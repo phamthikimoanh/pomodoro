@@ -21,11 +21,7 @@ const settings = (state = initState, action) => {
     case types.TOGGLE_ALARM_SOUND:
       return { ...state, isAlarmON: !state.isAlarmON };
 
-    case types.TOGGLE_AUTO_START:
-      return {
-        ...state,
-        isAutoStartON: !state.isAutoStartON
-      };
+    
     default:
       return state;
   }

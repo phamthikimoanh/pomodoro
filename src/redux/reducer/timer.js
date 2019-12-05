@@ -35,11 +35,12 @@ const timer = (state = initState, action) => {
         clockTime: state.breakLength * 60,
         isBreakTime: true
       };
-    case types.AUTO_START_TIMER:
-      return {
-        ...state,
-        isTimerRunning: true
-      };
+
+    // case types.AUTO_START_TIMER:
+    //   return {
+    //     ...state,
+    //     isTimerRunning: true
+    //   };
     default:
       return state;
   }

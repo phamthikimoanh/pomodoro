@@ -37,6 +37,6 @@ export const startBreak = () => ({
   type: types.START_BREAK
 });
 
-export const autoStartTimer = () => ({
-  type: types.AUTO_START_TIMER
-});
+// export const autoStartTimer = () => ({
+//   type: types.AUTO_START_TIMER
+// });

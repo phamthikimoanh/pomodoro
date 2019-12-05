@@ -4,14 +4,16 @@ import Couter from "./constants/Count";
 function hadleSessionLength(value, dispatchSessionUpdate) {
   if ((value > 0 && value <= 60) || value === "") {
     dispatchSessionUpdate(value);
+    localStorage.setItem("sessionLength", value);
   }
-  console.log("value là SessionLength:", value);
+  //console.log("value là SessionLength:", value);
 }
 function hadleBreakLength(value, dispatchBreakUpdate) {
   if ((value > 0 && value <= 15) || value === "") {
     dispatchBreakUpdate(value);
+    localStorage.setItem("breakLength", value);
   }
-  console.log("value là BreakLength:", value);
+  //console.log("value là BreakLength:", value);
 }
 function Setting(props) {
   //const { sessionLength, breakLength, isAlarmON, isAutoStartON } = props;

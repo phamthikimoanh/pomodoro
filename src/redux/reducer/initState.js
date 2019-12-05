@@ -7,6 +7,5 @@ const initState = {
   isTimerPaused: false,
   isBreakTime: false,
   isAlarmON: true,
-  isAutoStartON: true
 };
 export default initState;

@@ -4,7 +4,7 @@ import FormattedTime from "../constants/FormattedTime";
 const Timer = props => {
   const { clockTime, secondsElapsed } = props;
   const time = clockTime - secondsElapsed;
-  console.log("time: ", time);
+  //console.log("time: ", time);
 
   return (
     <div className="times">
