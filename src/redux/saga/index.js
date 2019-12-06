@@ -1,5 +1,10 @@
-import { watchIncrementAsync, watchDecrementAsync } from "./setting";
-import { all } from "redux-saga/effects";
+import {all} from "@redux-saga/core/effects";
+import historySaga from "./history";
+import settingSaga from "./setting";
+
 export default function* rootSaga() {
-  yield all([watchIncrementAsync(), watchDecrementAsync()]);
+    yield all([
+        ...historySaga,
+        ...settingSaga
+    ])
 }

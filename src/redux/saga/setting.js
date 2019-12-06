@@ -1,18 +1,45 @@
-// import { put, takeEvery } from "redux-saga/effects";
-// import * as types from "../action/actionTypes";
+import { fork, put, takeEvery } from "@redux-saga/core/effects";
+import * as types from "../action/actionTypes";
+import { loadState, saveLocalState } from "../data/localStorage";
+import * as actions from "../action";
 
-// export function* incrementAsync() {
-//   yield put({ type: types.INCREMENT_COUNT });
-// }
+function* getSetting() {
+  let sessionLength = loadState("sessionLength");
+  if (sessionLength) {
+    yield put(actions.afterUpdateSessionLength(sessionLength));
+  }
+  let breakLength = loadState("breakLength");
+  if (breakLength) {
+    yield put(actions.afterUpdateBreakLength(breakLength));
+  }
+}
 
-// export function* watchIncrementAsync() {
-//   yield takeEvery(types.INCREMENT_COUNT, incrementAsync);
-// }
+function* saveSetting(action) {
+  console.log(action);
+  if (action.type === types.LISTEN_UPDATE_SESSION_LENGTH) {
+    saveLocalState("sessionLength", action.value);
+    saveLocalState("clockTime", action.value * 60);
+    yield put(actions.afterUpdateSessionLength(action.value));
+  } else if (action.type === types.LISTEN_UPDATE_BREAK_LENGTH) {
+    saveLocalState("breakLength", action.value);
+    yield put(actions.afterUpdateBreakLength(action.value));
+  }
+  // else if (action.type === types.LISTEN_CHANGE_CLOCK_TIME) {
+  //     saveLocalState('clockTime', action.value);
+  // }
+}
 
-// export function* decrementAsync() {
-//   yield put({ type: types.DECREMENT_COUNT });
-// }
+function* listenSessionSetting() {
+  yield takeEvery(types.LISTEN_UPDATE_BREAK_LENGTH, saveSetting);
+}
 
-// export function* watchDecrementAsync() {
-//   yield takeEvery(types.DECREMENT_COUNT, decrementAsync);
-// }
+function* listenBreakSetting() {
+  yield takeEvery(types.LISTEN_UPDATE_SESSION_LENGTH, saveSetting);
+}
+
+const settingSaga = [
+  fork(getSetting),
+  fork(listenSessionSetting),
+  fork(listenBreakSetting)
+];
+export default settingSaga;

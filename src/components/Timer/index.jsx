@@ -2,6 +2,17 @@ import React, { Component } from "react";
 import Timer from "./Timer";
 import GroupButton from "./groupButton";
 import Sound from "../../acsset/ring.mp3";
+import {
+  resetTimer,
+  runTimer,
+  startBreak,
+  startTimer,
+  stopTimer
+} from "../../redux/action";
+import { connect } from "react-redux";
+import img from "../../acsset/images/tomato0.png";
+import img1 from "../../acsset/images/tomato1.png";
+import img2 from "../../acsset/images/tomato2.png";
 
 class index extends Component {
   constructor(props) {
@@ -70,6 +81,7 @@ class index extends Component {
           isTimerRunning={isTimerRunning}
           isTimerPaused={isTimerPaused}
           isBreakTime={isBreakTime}
+          bg={isBreakTime === true ? img2 : isTimerRunning ? img1 : img}
         />
         <GroupButton
           isTimerRunning={isTimerRunning}
@@ -83,4 +95,22 @@ class index extends Component {
   }
 }
 
-export default index;
+const mapStateToProps = state => {
+  return {
+    clockTime: state.timer.clockTime,
+    secondsElapsed: state.timer.secondsElapsed,
+    isTimerRunning: state.timer.isTimerRunning,
+    isTimerPaused: state.timer.isTimerPaused,
+    isBreakTime: state.timer.isBreakTime,
+    isAlarmON: state.timer.isAlarmON
+  };
+};
+
+const mapDispatchToProps = dispatch => ({
+  startTimer: () => dispatch(startTimer()),
+  stopTimer: () => dispatch(stopTimer()),
+  resetTimer: () => dispatch(resetTimer()),
+  runTimer: () => dispatch(runTimer()),
+  startBreak: () => dispatch(startBreak())
+});
+export default connect(mapStateToProps, mapDispatchToProps)(index);

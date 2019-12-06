@@ -3,7 +3,7 @@ import Button from "../constants/Button";
 const GroupBtn = props => {
   const { isTimerRunning, onStart, onStop, onReset } = props;
   return (
-    <div className="d-flex justify-content-center mt-5">
+    <div className="d-flex justify-content-center mt-2">
       {isTimerRunning ? (
         <Button
           id="stop"

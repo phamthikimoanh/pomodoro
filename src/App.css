@@ -69,7 +69,7 @@ input[type="number"]::-webkit-outer-spin-button {
   margin: 0 auto;
   width: 300px;
   height: 300px;
-  margin-top: 25px;
+  margin-top: 0px;
   display: -ms-flexbox;
   display: flex;
   display: -webkit-flex;
@@ -80,15 +80,17 @@ input[type="number"]::-webkit-outer-spin-button {
   /* border: 5px solid #eadac6; */
   color: #fff;
   border-radius: 50%;
-  background: url(/static/media/tomato0.6b0b8c1b.png) no-repeat fixed center;
-  background-size: 300px;
+  /* background: url(/static/media/tomato0.6b0b8c1b.png) no-repeat center;*/
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
 }
 #timer-label {
   font-size: 1.5rem;
   font-weight: 700;
 }
 #time-left {
-  font-size: 5rem;
+  font-size: 4rem;
   font-weight: 700;
 }
 .btn-general {

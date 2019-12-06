@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
-import { updateSessionLength, updateBreakLength } from "../action/index";
+import { updateSessionLength, updateBreakLength } from "../action/timerSetting";
+import { listenAddHistoryAction } from "../action/histories";
 import TimerSettings from "../../components/Setting";
 //import timer from './../reducer/timer';
 
@@ -10,7 +11,8 @@ const mapStateToProps = state => {
   // };
   return {
     sessionLength: state.sessionLength,
-    breakLength: state.breakLength
+    breakLength: state.breakLength,
+    histories: state.histories.histories
   };
 };
 
@@ -20,6 +22,9 @@ const mapDispatchToProps = dispatch => ({
   },
   updateBreakLength: value => {
     dispatch(updateBreakLength(value));
+  },
+  listenAddHistoryAction: (history, histories) => {
+    dispatch(listenAddHistoryAction(history, histories));
   }
 });
 export default connect(mapStateToProps, mapDispatchToProps)(TimerSettings);

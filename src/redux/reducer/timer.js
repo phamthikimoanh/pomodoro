@@ -1,6 +1,6 @@
 import * as types from "../action/actionTypes";
 import initState from "./initState";
-const timer = (state = initState, action) => {
+export const timer = (state = initState, action) => {
   switch (action.type) {
     case types.START_TIMER:
       return {
@@ -33,16 +33,29 @@ const timer = (state = initState, action) => {
         ...state,
         secondsElapsed: 0,
         clockTime: state.breakLength * 60,
-        isBreakTime: true
+        isBreakTime: true,
+        isToday: state.isToday + 1
       };
 
-    // case types.AUTO_START_TIMER:
-    //   return {
-    //     ...state,
-    //     isTimerRunning: true
-    //   };
+    case types.UPDATE_SESSION_LENGTH:
+      return {
+        ...state,
+        sessionLength: action.value !== "" ? parseInt(action.value, 10) : "",
+        clockTime:
+          !state.isTimerRunning && !state.isTimerPaused && action.value !== ""
+            ? parseInt(action.value, 10) * 60
+            : state.clockTime
+      };
+
+    case types.UPDATE_BREAK_LENGTH:
+      return {
+        ...state,
+        breakLength: action.value !== "" ? parseInt(action.value, 10) : ""
+      };
+    case types.TOGGLE_ALARM_SOUND:
+      return { ...state, isAlarmON: !state.isAlarmON };
+
     default:
       return state;
   }
 };
-export default timer;

@@ -6,15 +6,8 @@ import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "antd";
 import { Provider } from "react-redux";
-import { createStore, applyMiddleware } from "redux";
-import createSagaMiddleware from "redux-saga";
-import rootReducer from "./redux/reducer/index";
-//import rootSaga from "./redux/saga/index";
-
-//const sagaMiddleware = createSagaMiddleware();
-//const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
-const store = createStore(rootReducer);
-
+import { configureStore } from "./redux/index";
+const store = configureStore();
 ReactDOM.render(
   <Provider store={store}>
     <App />
